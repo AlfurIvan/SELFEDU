@@ -1,0 +1,3 @@
+Dont forger about dot and tag in docker
+
+$ sudo docker build -t fldocker__db .
