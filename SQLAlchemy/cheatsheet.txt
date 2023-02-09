@@ -1,0 +1,31 @@
+https://stackoverflow.com/questions/64985913/failed-to-solve-with-frontend-dockerfile
+https://stackoverflow.com/a/70288816
+
+sudo docker-compose up -d --build
+sudo docker-compose exec web python manage.py create_db
+sudo docker-compose exec db psql --username=hello_flask --dbname=hello_flask_dev
+\l
+\c
+\dt
+
+./config.py -- SQLALCHEMY_DATABASE_URI-- СУКА ТУТ urI !!!!!!!!!! не юрл, юрИ!!! пиздец, учимся на ошбках.
+#models -- А, да Coloumn - херня, кринж, правильно писать COLUMN
+
+sudo docker volume inspect sqlalchemy_postgres_data
+chmod +x services/web/entrypoint.sh --создал ентрипоинт, дать права
+
+CREATE BEFORE SEEDING
+sudo docker-compose exec web python manage.py seed_db
+
+select * from users; --не забудь, что sql слегка как С, ставь ;
+
+
+поднимаем контейнерьі на продакшн
+docker-compose -f docker-compose.prod.yml up -d --build
+
+sudo docker-compose -f docker-compose.prod.yml down -v
+sudo docker-compose -f docker-compose.prod.yml up -d --build
+sudo docker-compose -f docker-compose.prod.yml exec web python manage.py create_db
+sudo docker-compose -f docker-compose.prod.yml exec web python manage.py seed_db
+
+хз почему, в docker-compose.prod.yml в сервисе nginx мапать портьі надо без "", иначе контейнер охуевает
