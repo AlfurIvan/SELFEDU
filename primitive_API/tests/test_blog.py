@@ -14,7 +14,7 @@ def test_index(client, auth):
     assert b"test title" in response.data
     assert b"by test on 2018-01-01" in response.data
     assert b"test\nbody" in response.data
-    assert b"href='/1/update'" in response.data
+    assert b'href="/1/update"' in response.data   # double quotes in response
 
 
 @pytest.mark.parametrize('path',
@@ -81,7 +81,7 @@ def test_update(client, auth, app):
                          ))
 def test_create_update_validate(client, auth, path):
     auth.login()
-    response = client.post(path, data={'title': '', 'body':''})
+    response = client.post(path, data={'title': '', 'body': ''})
     assert b'Title is required.' in response.data
 
 

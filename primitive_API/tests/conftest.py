@@ -13,7 +13,7 @@ with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
 def app():
     """This fixture runs app in test configuration with test database"""
     # temporary database file descriptor & path
-    db_fd, db_path = tempfile.mktemp()
+    db_fd, db_path = tempfile.mkstemp()  # not mktemp, mkstemp
 
     app = create_app({
         'TESTING': True,
