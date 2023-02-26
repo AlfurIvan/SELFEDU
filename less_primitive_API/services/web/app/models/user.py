@@ -1,6 +1,6 @@
 """"""
 
-from . import db
+from .db_init import db
 
 
 class User(db.Model):

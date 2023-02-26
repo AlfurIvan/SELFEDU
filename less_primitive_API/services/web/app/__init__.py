@@ -1,5 +1,5 @@
 from flask import Flask
-from app.models.db_init import db
+from .models.db_init import db
 
 
 def app_factory():
