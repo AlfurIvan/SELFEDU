@@ -5,8 +5,6 @@ from .db_init import db
 
 
 class Post(db.Model):
-    __tablename__ = "post"
-
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     created = db.Column(db.TIMESTAMP, nullable=False, default=datetime.utcnow)
@@ -17,4 +15,3 @@ class Post(db.Model):
         self.author_id = author_id
         self.title = title
         self.body = body
-
